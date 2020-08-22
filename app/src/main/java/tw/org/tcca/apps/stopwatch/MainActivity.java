@@ -8,6 +8,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity {
     private Button leftBtn, rightBtn;
     private boolean isRunning;  // false
@@ -50,12 +53,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void startClock(){
+    private int counter;    // 0
+    private Timer timer = new Timer();
+    private class MyTask extends TimerTask {
+        @Override
+        public void run() {
+            counter++;
+            Log.v("bradlog", "counter = " + counter);
+        }
+    }
 
+    private MyTask myTask;
+    private void startClock(){
+        myTask = new MyTask();
+        timer.schedule(myTask, 100, 100);
     }
 
     private void stopClock(){
-
+        myTask.cancel();
     }
 
 }
