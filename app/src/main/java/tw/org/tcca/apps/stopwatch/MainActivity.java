@@ -73,4 +73,13 @@ public class MainActivity extends AppCompatActivity {
         myTask.cancel();
     }
 
+    @Override
+    public void finish() {
+        if (timer != null){
+            timer.cancel();
+            timer.purge();
+            timer = null;
+        }
+        super.finish();
+    }
 }
