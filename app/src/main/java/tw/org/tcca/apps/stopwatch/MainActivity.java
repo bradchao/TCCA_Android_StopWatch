@@ -43,6 +43,18 @@ public class MainActivity extends AppCompatActivity {
         isRunning = !isRunning;
         rightBtn.setText(isRunning?"Stop":"Start");
         leftBtn.setText(isRunning?"Lap":"Reset");
+        if (isRunning){
+            startClock();
+        }else{
+            stopClock();
+        }
+    }
+
+    private void startClock(){
+
+    }
+
+    private void stopClock(){
 
     }
 
