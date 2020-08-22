@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -14,12 +15,14 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
     private Button leftBtn, rightBtn;
     private boolean isRunning;  // false
+    private TextView clock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        clock = findViewById(R.id.clock);
         leftBtn = findViewById(R.id.leftBtn);
         rightBtn = findViewById(R.id.rightBtn);
 
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             counter++;
+            clock.setText("counter = " + counter);
             Log.v("bradlog", "counter = " + counter);
         }
     }
