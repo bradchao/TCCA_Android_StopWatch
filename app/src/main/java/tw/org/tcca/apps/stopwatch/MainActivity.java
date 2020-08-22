@@ -46,6 +46,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clickLeft(){
+        if (isRunning){
+            // Lap
+            doLap();
+        }else{
+            // Reset
+            doReset();
+        }
+    }
+
+    private void doReset(){
+
+    }
+    private void doLap(){
 
     }
 
