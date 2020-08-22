@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doReset(){
-
+        counter = 0;
+        uiHandler.sendEmptyMessage(0);
     }
     private void doLap(){
 
