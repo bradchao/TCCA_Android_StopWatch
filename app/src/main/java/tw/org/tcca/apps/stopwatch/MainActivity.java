@@ -1,8 +1,12 @@
 package tw.org.tcca.apps.stopwatch;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.provider.Contacts;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -58,11 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
     private int counter;    // 0
     private Timer timer = new Timer();
+    private UIHandler uiHandler = new UIHandler();
     private class MyTask extends TimerTask {
         @Override
         public void run() {
             counter++;
-            clock.setText("counter = " + counter);
+            uiHandler.sendEmptyMessage(0);
             Log.v("bradlog", "counter = " + counter);
         }
     }
@@ -86,4 +91,13 @@ public class MainActivity extends AppCompatActivity {
         }
         super.finish();
     }
+
+    private class UIHandler extends Handler {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            clock.setText("counter = " + counter);
+        }
+    }
+
 }
