@@ -77,8 +77,12 @@ public class MainActivity extends AppCompatActivity {
         counter = 0;
         uiHandler.sendEmptyMessage(0);
     }
-    private void doLap(){
 
+    private void doLap(){
+        HashMap<String,String> row = new HashMap<>();
+        row.put("brad", clock.getText().toString());
+        data.add(row);
+        adapter.notifyDataSetChanged();
     }
 
     private void clickRight(){
