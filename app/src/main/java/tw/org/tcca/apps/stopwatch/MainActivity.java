@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private ListView lapList;
     private SimpleAdapter adapter;
     private LinkedList<HashMap<String,String>> data = new LinkedList<>();
-    private String[] from = {"brad"};
-    private int[] to = {R.id.itemLap};
+    private String[] from = {"No", "Lap"};
+    private int[] to = {R.id.itemNo, R.id.itemLap};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void doLap(){
         HashMap<String,String> row = new HashMap<>();
-        row.put("brad", clock.getText().toString());
+        row.put(from[0], "" + (data.size()+1));
+        row.put(from[1], clock.getText().toString());
         data.add(row);
         adapter.notifyDataSetChanged();
     }
