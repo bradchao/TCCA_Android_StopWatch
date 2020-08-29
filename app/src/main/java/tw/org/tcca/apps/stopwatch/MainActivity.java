@@ -76,6 +76,18 @@ public class MainActivity extends AppCompatActivity {
     private void doReset(){
         counter = 0;
         uiHandler.sendEmptyMessage(0);
+
+        data.clear();
+        adapter.notifyDataSetChanged();
+    }
+
+    private String toColokString(){
+        int hs = counter % 100;
+        int ts = counter / 100; // 總秒數
+        int hh = ts / (60*60);
+        int mm = (ts - hh*60*60) / 60;
+        int ss = ts % 60;
+        return String.format("%d:%d:%d.%d", hh, mm, ss, hs);
     }
 
     private void doLap(){
@@ -112,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     private MyTask myTask;
     private void startClock(){
         myTask = new MyTask();
-        timer.schedule(myTask, 100, 100);
+        timer.schedule(myTask, 10, 10);
     }
 
     private void stopClock(){
@@ -133,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            clock.setText("counter = " + counter);
+            clock.setText(toColokString());
         }
     }
 
