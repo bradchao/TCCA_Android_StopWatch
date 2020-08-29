@@ -11,8 +11,12 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,11 +25,18 @@ public class MainActivity extends AppCompatActivity {
     private boolean isRunning;  // false
     private TextView clock;
 
+    private ListView lapList;
+    private SimpleAdapter adapter;
+    private LinkedList<HashMap<String,String>> data = new LinkedList<>();
+    private String[] from = {"brad"};
+    private int[] to = {R.id.itemLap};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        lapList = findViewById(R.id.lapList);
         clock = findViewById(R.id.clock);
         leftBtn = findViewById(R.id.leftBtn);
         rightBtn = findViewById(R.id.rightBtn);
@@ -43,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
                 clickRight();
             }
         });
+
+        initList();
+    }
+
+    private void initList(){
+        adapter = new SimpleAdapter(this, data, R.layout.item, from, to);
+        lapList.setAdapter(adapter);
     }
 
     private void clickLeft(){
